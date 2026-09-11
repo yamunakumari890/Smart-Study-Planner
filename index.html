@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart-study-planner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>📚 StudyFlow</h1>
+      <p>Plan your study. Track your progress, Achieve your goals.</p>
+    </header>
+
+    <main>
+      <section class="task-section">
+        <h2>Add Study Task</h2>
+
+        <div class="task-form">
+          <input type="text" id="taskInput" placeholder="Enter your study task">
+
+          <select id="subject">
+            <option value="">Select Subject</option>
+            <option value="Java">Java</option>
+            <option value="DSA">DSA</option>
+            <option value="CN">Computer Networks</option>
+            <option value="DS">Data Structure</option>
+            <option value="other">Other</option>
+          </select>
+
+          <select id="priority">
+            <option value="">Select Priority</option>
+            <option value="Low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+
+          <input type="date" id="studyDate">
+          <button id="addTaskBtn">➕ Add Task</button>
+        </div>
+      </section>
+
+      <section class="progress-section">
+        <h2>📊 Study Progress</h2>
+
+        <div class="progress-info">
+          <span>Total Taska: <strong id="totalTasks">0</strong></span>
+          <span>Completed: <strong id="completedTasks">0</strong></span>
+          <span>Pending: <strong id="pendingTasks">0</strong></span>
+        </div>
+
+        <div class="progress-bar">
+          <div id="progressFill">
+          </div>
+
+          <p id="progressText">0% Completed</p>
+        </div>
+      </section>
+
+      <section class="filter-section">
+
+        <input type="text" id="searchInput" placeholder="🔍 Search your tasks....">
+
+        <section id="filterTasks">
+          <option value="all">All Tasks</option>
+          <option value="pending">Pending</option>
+          <option value="completed">Completed</option>
+        </section>
+        </section>
+
+        <section class="task-list-section">
+          <h2>📝 My Study Tasks</h2>
+
+          <div id="taskList">
+            <!-- Tasks will be added here using JavaScript -->
+          </div>
+      </section>
+    </main>
+  </div>
+</body>
+<script src="script.js"></script>
+</html>
