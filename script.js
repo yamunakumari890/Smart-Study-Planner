@@ -13,4 +13,14 @@ addTaskBtn.addEventListener("click", function() {
     alert("Please enter a task");
     return;
   }
+
+  const task = document.createElement("div");
+
+  task.innerHTML =  `
+  <h3>${taskInput.value}</h3>
+  <p>Subject: ${subject.value}</p>
+  <p>Priority: ${priority.value}</p>
+  <p>Date: ${studyDate.value}</p>
+   `;
+   taskList.appendChild(task);
 });
