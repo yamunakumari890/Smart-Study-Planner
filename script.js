@@ -15,12 +15,27 @@ addTaskBtn.addEventListener("click", function() {
   }
 
   const task = document.createElement("div");
+  task.classList.add("task-card");
 
   task.innerHTML =  `
   <h3>${taskInput.value}</h3>
   <p>Subject: ${subject.value}</p>
   <p>Priority: ${priority.value}</p>
   <p>Date: ${studyDate.value}</p>
+  <button class="complete-btn">✅ Complete</button>
+  <button class="delete-btn">🗑️ Delete</button>
    `;
    taskList.appendChild(task);
+
+const completeBtn = task.querySelector(".complete-btn");
+
+completeBtn.addEventListener("click", function(){
+  task.classList.toggle("completed");
+});
+
+const deleteBtn = task.querySelector(".delete-btn");
+
+deleteBtn.addEventListener("click", function(){
+  task.remove();
+});
 });

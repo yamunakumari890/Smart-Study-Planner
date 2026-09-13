@@ -150,6 +150,10 @@ button:hover{
   gap: 12px;
 }
 
+.task-card.completed {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
 @media (max-width: 600px){
 .app {
   padding: 15px;
