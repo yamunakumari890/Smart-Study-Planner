@@ -1,8 +1,9 @@
+let tasks = JSON.parse(localStorage.getItem("studyTasks")) || [];
 const filterTasks = document.getElementById("filterTasks");
 const taskInput = document.getElementById("taskInput");
 const subject = document.getElementById("subject");
 const priority = document.getElementById("priority");
-const studyDate = document.getElementById("studyDate")
+const studyDate = document.getElementById("studyDate");
 
 const addTaskBtn = document.getElementById("addTaskBtn");
 const taskList = document.getElementById("taskList");
@@ -14,6 +15,17 @@ addTaskBtn.addEventListener("click", function() {
     alert("Please enter a task");
     return;
   }
+
+  const taskData ={
+    title: taskInput.value,
+    subject: subject.value,
+    priority: priority.value,
+    date: studyDate.value,
+    completed: false
+  };
+
+  tasks.push(taskData);
+  localStorage.setItem("studyTasks", JSON.stringify(tasks));
 
   const task = document.createElement("div");
   task.classList.add("task-card");
