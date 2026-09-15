@@ -1,4 +1,5 @@
 let tasks = JSON.parse(localStorage.getItem("studyTasks")) || [];
+
 const filterTasks = document.getElementById("filterTasks");
 const taskInput = document.getElementById("taskInput");
 const subject = document.getElementById("subject");
@@ -13,7 +14,7 @@ function createTaskCard(taskData, index){
   const task = document.createElement("div");
   task.classList.add("task-card");
 
-  if(tasksData.completed){
+  if(taskData.completed){
     task.classList.add("completed");
   }
 
@@ -29,7 +30,7 @@ function createTaskCard(taskData, index){
     `;
     taskList.appendChild(task);
 
-    const completeBtn = task.querySelector(".complete-Btn");
+    const completeBtn = task.querySelector(".complete-btn");
 
     completeBtn.addEventListener("click", function() {
       task.classList.toggle("completed");
