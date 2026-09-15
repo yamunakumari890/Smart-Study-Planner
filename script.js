@@ -8,6 +8,69 @@ const studyDate = document.getElementById("studyDate");
 const addTaskBtn = document.getElementById("addTaskBtn");
 const taskList = document.getElementById("taskList");
 
+function createTaskCard(taskData, index){
+
+  const task = document.createElement("div");
+  task.classList.add("task-card");
+
+  if(tasksData.completed){
+    task.classList.add("completed");
+  }
+
+    task.innerHTML = `
+        <h3>${taskData.title}</h3>
+        <p>Subject: ${taskData.subject}</p>
+        <p>Priority: ${taskData.priority}</p>
+        <p>Date: ${taskData.date}</p>
+
+        <button class="complete-btn">✅ Complete</button>
+        <button class="delete-btn">🗑️ Delete</button>
+        <button class="edit-btn">✏️ Edit</button>
+    `;
+    taskList.appendChild(task);
+
+    const completeBtn = task.querySelector(".complete-Btn");
+
+    completeBtn.addEventListener("click", function() {
+      task.classList.toggle("completed");
+
+      taskData.completed = task.classList.contains("completed");
+
+        tasks[index] = taskData;
+
+      localStorage.setItem("studyTasks", JSON.stringify(tasks));
+    });
+
+    const deleteBtn = task.querySelector(".delete-btn");
+    deleteBtn.addEventListener("click", function(){
+      task.remove();
+
+      tasks.splice(index, 1);
+
+      localStorage.setItem("studyTasks", JSON.stringify(tasks));
+    });
+
+    const editBtn = task.querySelector(".edit-btn");
+    const taskTitle = task.querySelector("h3");
+
+    editBtn.addEventListener("click", function(){
+       const newTask = prompt(
+            "Edit your task:",
+            taskTitle.textContent
+        );
+
+        if(newTask !== null && newTask.trim() !== ""){
+
+          taskTitle.textContent = newTask;
+          taskData.title = newTask;
+          tasks[index] = taskData;
+
+          localStorage.setItem("studyTasks", JSON.stringify(tasks));
+        }
+    });
+
+}
+
 addTaskBtn.addEventListener("click", function() {
   console.log("Add Task Button Clicked");
 
@@ -27,74 +90,42 @@ addTaskBtn.addEventListener("click", function() {
   tasks.push(taskData);
   localStorage.setItem("studyTasks", JSON.stringify(tasks));
 
-  const task = document.createElement("div");
-  task.classList.add("task-card");
+ createTaskCard(taskData, tasks.length - 1);
 
-  task.innerHTML =  `
-  <h3>${taskInput.value}</h3>
-  <p>Subject: ${subject.value}</p>
-  <p>Priority: ${priority.value}</p>
-  <p>Date: ${studyDate.value}</p>
-  <button class="complete-btn">✅ Complete</button>
-  <button class="delete-btn">🗑️ Delete</button>
-  <button class="edit-btn">✏️ Edit</button>
-   `;
-   taskList.appendChild(task);
+   taskInput.value = "";
 
-const completeBtn = task.querySelector(".complete-btn");
+    subject.value = "";
 
-completeBtn.addEventListener("click", function(){
-  task.classList.toggle("completed");
+    priority.value = "";
+
+    studyDate.value = "";
 });
 
-const deleteBtn = task.querySelector(".delete-btn");
+filterTasks.addEventListener("change", function() {
+  const filterValue = filterTasks.value;
+  const taskCards = document.querySelectorAll(".task-card");
 
-deleteBtn.addEventListener("click", function(){
-  task.remove();
+  taskCards.forEach(function (task){
+    const isCompleted = task.classList.contains("completed");
+
+    if(filterValue === "all") {
+      task.style.display = "block";
+    }
+    else if (filterValue === "completed") {
+
+      task.style.display = isCompleted ? "block" : "none";
+    }
+    else if (filterValue === "pending") {
+
+      task.style.display = !isCompleted ? "blcok" : "none";
+    }
+  });
 });
 
-const editBtn = task.querySelector(".edit-btn");
+function loadTasks() {
+  tasks.forEach(function (taskData, index){
+    createTaskCard(taskData, index);
+  });
+}
 
-const taskTitle = task.querySelector("h3");
-
-editBtn.addEventListener("click", function() {
-  const newTask = prompt("Edit your task:", taskTitle.textContent);
-
-  if (newTask !== null && newTask.trim() !== ""){
-    taskTitle.textContent = newTask;
-  }
-});
-filterTasks.addEventListener("change", function () {
-     const filterValue = filterTasks.value;
-
-    const tasks = document.querySelectorAll(".task-card");
-
-    tasks.forEach(function (task) {
-
-        const isCompleted = task.classList.contains("completed");
-
-        if (filterValue === "all") {
-
-            task.style.display = "block";
-
-        } 
-        else if (filterValue === "completed") {
-
-            if (isCompleted) {
-                task.style.display = "block";
-            } else {
-                task.style.display = "none";
-            }
-
-        } 
-        else if (filterValue === "pending") {
-
-            if (!isCompleted) {
-                task.style.display = "block";
-            } else {
-                task.style.display = "none";
-            }
-          }
-        });
-   });
-}); 
+loadTasks();
