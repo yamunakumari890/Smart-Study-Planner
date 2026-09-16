@@ -9,6 +9,32 @@ const studyDate = document.getElementById("studyDate");
 const addTaskBtn = document.getElementById("addTaskBtn");
 const taskList = document.getElementById("taskList");
 
+const totalTasks = document.getElementById("totalTasks");
+const completedTasks = document.getElementById("completedTasks");
+const pendingTasks =  document.getElementById("pendingTasks");
+const progressFill = document.getElementById("progressFill");
+const progressText = document.getElementById("progressText");
+
+function updateProgress(){
+  const total = tasks.length;
+  const completed = tasks.filter(function(task){
+     return task.completed;
+  }).length;
+
+  const pending = total - completed;
+  let percentage = 0;
+  if(total > 0) {
+    percentage = Math.round((completed / total) * 100);
+  }
+
+  totalTasks.textContent = total;
+  completedTasks.textContent = completed;
+  pendingTasks.textContent = pending;
+
+  progressFill.style.width = percentage + "%";
+  progressText.textContent = percentage + "% completed";
+}
+
 function createTaskCard(taskData, index){
 
   const task = document.createElement("div");
@@ -50,6 +76,8 @@ function createTaskCard(taskData, index){
 
       localStorage.setItem("studyTasks", JSON.stringify(tasks));
     });
+
+    updateProgress();
 
     const editBtn = task.querySelector(".edit-btn");
     const taskTitle = task.querySelector("h3");
@@ -93,6 +121,8 @@ addTaskBtn.addEventListener("click", function() {
 
  createTaskCard(taskData, tasks.length - 1);
 
+ updateProgress();
+
    taskInput.value = "";
 
     subject.value = "";
@@ -130,3 +160,4 @@ function loadTasks() {
 }
 
 loadTasks();
+updateProgress();
