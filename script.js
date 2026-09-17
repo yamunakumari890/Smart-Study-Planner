@@ -8,6 +8,7 @@ const studyDate = document.getElementById("studyDate");
 
 const addTaskBtn = document.getElementById("addTaskBtn");
 const taskList = document.getElementById("taskList");
+const searchInput = document.getElementById("searchInput");
 
 const totalTasks = document.getElementById("totalTasks");
 const completedTasks = document.getElementById("completedTasks");
@@ -149,6 +150,20 @@ filterTasks.addEventListener("change", function() {
     else if (filterValue === "pending") {
 
       task.style.display = !isCompleted ? "blcok" : "none";
+    }
+  });
+});
+
+searchInput.addEventListener("input", function(){
+  const searchValue = searchInput.value.toLowerCase();
+  const taskCards = document.querySelectorAll(".task-card");
+
+  taskCards.forEach(function (task){
+    const taskTitle = task.querySelector("h3").textContent.toLowerCase();
+    if (taskTitle.includes(searchValue)){
+      task.style.display = "block";
+    } else {
+      task.style.display = "none";
     }
   });
 });
