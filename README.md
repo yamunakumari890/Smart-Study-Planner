@@ -5,4 +5,4 @@ StudyFlow is a simple and responsive study task management web application built
 It helps students organize their study tasks, track completion progress, search tasks, and save their tasks using browser Local Storage.
 
 🚀 Live Demo
-Add Github Pages live link here:- 
+Add Github Pages live link here:-  https://yamunakumari890.github.io/Smart-Study-Planner/
