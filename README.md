@@ -8,16 +8,16 @@ It helps students organize their study tasks, track completion progress, search 
 Add Github Pages live link here:-  https://yamunakumari890.github.io/Smart-Study-Planner/
 
 ✨ Features
-➕ Add Study Tasks
-✏️ Edit Tasks
-✅ Mark Tasks as Completed
-🗑️ Delete Tasks
-🔍 Search Tasks
-🔽 Filter Tasks
-All Tasks
-Pending Tasks
-Completed Tasks
-📊 Track Study Progress
-💾 Save Tasks using Local Storage
-📱 Responsive Design
+. ➕ Add Study Tasks
+. ✏️ Edit Tasks
+. ✅ Mark Tasks as Completed
+. 🗑️ Delete Tasks
+. 🔍 Search Tasks
+. 🔽 Filter Tasks
+. All Tasks
+. Pending Tasks
+. Completed Tasks
+. 📊 Track Study Progress
+. 💾 Save Tasks using Local Storage
+. 📱 Responsive Design
 
