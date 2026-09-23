@@ -42,10 +42,10 @@ StudyFlow automatically displays:
 
 ## For Example:-
 
-- Total Tasks:- 7
-- Completed: 5
-- Pending:- 2
-- Progress Bar:- 60%
+- Total Tasks:- 6
+- Completed: 3
+- Pending:- 3
+- Progress Bar:- 50%
 
 ## 💾 Local Storage
 
